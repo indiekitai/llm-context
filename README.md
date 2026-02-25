@@ -2,6 +2,8 @@
 
 📊 **Calculate token budget for LLM context windows** - know what fits before you paste.
 
+[![MCP](https://img.shields.io/badge/MCP-enabled-blue)](./mcp_server.py)
+
 Ever wondered how much of your codebase will fit in Claude's 200K context window? Or whether that massive log file will blow your GPT-4 budget? `llm-context` tells you instantly.
 
 ## Install
@@ -87,6 +89,51 @@ When working with AI coding assistants, context is everything. But context windo
 1. **Plan before pasting** - Know if your files will fit
 2. **Optimize context** - Find the biggest token hogs
 3. **Budget wisely** - Track token usage across models
+
+## MCP Server (for AI Agents)
+
+llm-context includes a Python MCP server for integration with Claude, Cursor, and other AI tools.
+
+### Setup
+
+```bash
+pip install fastmcp tiktoken
+```
+
+### Add to Claude Desktop
+
+```json
+{
+  "mcpServers": {
+    "llm-context": {
+      "command": "python",
+      "args": ["/path/to/llm-context/mcp_server.py"]
+    }
+  }
+}
+```
+
+### Available Tools
+
+| Tool | Description |
+|------|-------------|
+| `llm_context_scan` | Scan files/dirs and show token usage vs model context |
+| `llm_context_check` | Check if text fits in a model's context window |
+| `llm_context_estimate` | Simple token count for a string |
+| `llm_context_models` | List available models and their context sizes |
+
+### Example Usage
+
+```
+> How many tokens is my src/ folder?
+[uses llm_context_scan]
+
+> Will this log file fit in GPT-4's context?
+[uses llm_context_check with model="gpt-4"]
+
+> List supported models
+[uses llm_context_models]
+```
 
 ## License
 
