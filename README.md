@@ -1,3 +1,5 @@
+[English](README.md) | [中文](README.zh-CN.md)
+
 # llm-context
 
 📊 **Calculate token budget for LLM context windows** - know what fits before you paste.
